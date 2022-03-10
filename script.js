@@ -4,12 +4,15 @@ const elementById = (id) => {
 };
 
 const handleSearch = () => {
+  const artistContainer = elementById("artists");
   const keyword = elementById("keyword");
   console.log(keyword)
   const url = `https://theaudiodb.com/api/v1/json/2/search.php?s=${keyword.value}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => showArtists(data));
+   artistContainer.innerHTML = '';
+
 };
 
 const showArtists = (data) => {
@@ -57,14 +60,14 @@ const showAlbum = (data) => {
   // const album = data[0];
   // console.log(album)
   const albumContainer = elementById("albums");
-  data.album.forEach((item) => {
+  data?.album?.forEach((item) => {//chaining dewar pore ultapalta likhle o error dekhabe nah console a
     console.log(item)
     const div = document.createElement("div");
     div.classList.add("album");
     div.innerHTML = `
         <div class="album-image-container">
           <img
-            src="${item.strAlbumThumb}"
+            src="${item.strAlbumThumb ? item.strAlbumThumb: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80.jpg'}"
             alt=""
           />
         </div>
