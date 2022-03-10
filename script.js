@@ -15,12 +15,15 @@ const handleSearch = () => {
 const showArtists = (data) => {
   const artistContainer = elementById("artists");
   data?.artists?.forEach((artist) => {
+    console.log(artists)
     const div = document.createElement("div");
     div.classList.add("artist-card");
     div.innerHTML = `<div class="image-container">
     <div class="image-container-inner">
       <img
-        src="${artist.strArtistThumb}"
+        src="${artist.strArtistThumb 
+          ? artist.strArtistThumb 
+           : "https://www.pinclipart.com/picdir/middle/142-1421318_abdu-sentamu-person-image-placeholder-clipart.png"}"
         alt=""
       />
     </div>
